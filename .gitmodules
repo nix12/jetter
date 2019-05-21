@@ -1,0 +1,3 @@
+[submodule "jetter-client"]
+	path = jetter-client
+	url = https://github.com/nix12/jetter-client
