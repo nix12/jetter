@@ -1,3 +1,6 @@
 [submodule "jetter-client"]
 	path = jetter-client
 	url = https://github.com/nix12/jetter-client
+[submodule "user_authentication_and_authorization"]
+	path = user_authentication_and_authorization
+	url = https://github.com/nix12/user_authentication_and_authorization
