@@ -17,5 +17,3 @@ services:
     image: postgres:12
     ports:
       - "5433:5433"
-    # volumes:
-    #  - ./tmp/db:/var/lib/postgresql/data
