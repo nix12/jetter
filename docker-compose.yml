@@ -7,15 +7,15 @@ services:
     container_name: user_auth_api
     build: ./user_authentication_and_authorization
     command: bundle install
-    working_dir: /jetter
     ports: 
       - "3001:3001"
     volumes: 
-      - ./:/user_authentication_and_authorization
+      - ./user_authentication_and_authorization:/home/jetter
 
   # Postgres database
   postgres:
-    container_name: postgres
     image: postgres:12
     ports:
       - "5433:5433"
+    # volumes:
+    #  - ./tmp/db:/var/lib/postgresql/data
