@@ -2,18 +2,22 @@ version: "3.3"
 
 services:
 
+  # Postgres database
+  db:
+    image: postgres:12
+    ports:
+      - "5433:5432"
+
   # Backend API's
   user_authentication_and_authorization:
     container_name: user_auth_api
     build: ./user_authentication_and_authorization
     command: bundle install
     ports: 
-      - "3001:3001"
+      - "3001:3000"
+    env_file: .env
+    environment:
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
     volumes: 
       - ./user_authentication_and_authorization:/home/jetter
 
-  # Postgres database
-  postgres:
-    image: postgres:12
-    ports:
-      - "5433:5433"
