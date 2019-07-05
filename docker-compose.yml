@@ -12,12 +12,14 @@ services:
   user_authentication_and_authorization:
     container_name: user_auth_api
     build: ./user_authentication_and_authorization
-    command: bundle install
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     ports: 
       - "3001:3000"
     env_file: .env
     environment:
       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+    depends_on:
+      - db
     volumes: 
       - ./user_authentication_and_authorization:/home/jetter
 
