@@ -7,7 +7,7 @@ services:
     image: postgres:12
     ports:
       - "5433:5432"
-
+    
   # Backend API's
   user_authentication_and_authorization:
     container_name: user_auth_api
