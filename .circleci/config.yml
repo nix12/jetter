@@ -12,6 +12,8 @@ jobs:
           command: |
             git submodule init
             git submodule update --remote
+      - run: echo "Changing directory"
+      - run: cd user_authentication_and_authorization
       - run: echo "Running bundle install"
       - run: bundle install
   build_jetter_client:
@@ -25,6 +27,8 @@ jobs:
           command: |
             git submodule init
             git submodule update --remote
+      - run: echo "Changing directory"
+      - run: cd jetter-client
       - run: echo "Running npm install"
       - run: npm install
       - run: echo "Building project"
@@ -40,6 +44,8 @@ jobs:
           command: |
             git submodule init
             git submodule update --remote
+      - run: echo "Changing directory"
+      - run: cd user_authentication_and_authorization
       - run: "Running bundle install"
       - run: bundle install
       - run: echo "Running RSpec tests."
@@ -55,6 +61,8 @@ jobs:
           command: |
             git submodule init
             git submodule update --remote
+      - run: echo "Changing directory"
+      - run: cd jetter-client
       - run: echo "Running npm install"
       - run: npm install
       - run: echo "Running npm test"
