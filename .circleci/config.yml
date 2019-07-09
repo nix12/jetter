@@ -68,7 +68,7 @@ jobs:
 
 workflows:
   version: 2
-  backend_and_frontend:
+  build_and_test:
     jobs:
       - backend
       - frontend:
