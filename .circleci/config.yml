@@ -69,6 +69,6 @@ workflows:
       - test_user_authentication_and_authorization:
           requires:
             - build_user_authentication_and_authorization
-      - test_jetter_client
+      - test_jetter_client:
           requires:
             - build_jetter_client
