@@ -71,6 +71,6 @@ workflows:
   backend_and_frontend:
     jobs:
       - backend
-      - frontend
+      - frontend:
           requires:
             - backend
