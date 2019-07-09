@@ -35,7 +35,7 @@ jobs:
             npm install
             echo "Building project"
             npm run build
-  test_user_authentication_and_authorizationi:
+  test_user_authentication_and_authorization:
     docker:
       - image: circleci/ruby:2.6.3
     steps:
