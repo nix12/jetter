@@ -20,6 +20,9 @@ jobs:
           command: |
             git submodule init
             git submodule update --remote
+      - run:
+          name: "Build and Migrate"
+          command: |
             echo "Changing directory"
             cd user_authentication_and_authorization
             pwd
@@ -30,6 +33,8 @@ jobs:
             bundle exec rake db:create
             bundle exec rake db:migrate
             bundle exec rake db:seed
+        environment:
+          DATABASE_URL: "postgres://Developer@localhost:5432/user_authentication_and_authorization_test"
   build_jetter_client:
     docker:
       - image: circleci/node:8.16
@@ -67,6 +72,9 @@ jobs:
           command: |
             git submodule init
             git submodule update --remote
+      - run:
+          name: "Build, Migrate, and Test"
+          command: |
             echo "Changing directory"
             cd user_authentication_and_authorization
             pwd
@@ -77,8 +85,9 @@ jobs:
             bundle exec rake db:create
             bundle exec rake db:migrate
             bundle exec rake db:seed
-            echo "Running RSpec tests."
-            rspec spec
+            bundle exec rspec spec
+        environment:
+          DATABASE_URL: "postgres://Developer@localhost:5432/user_authentication_and_authorization_test"
   test_jetter_client:
     docker:
       - image: circleci/node:8.16
