@@ -8,6 +8,10 @@ jobs:
           PGHOST: localhost
           PGUSER: jetter
           RAILS_ENV: test
+      - image: circleci/postgres:12
+        environment:
+          POSTGRES_USER: jetter
+          POSTGRES_DB: user_authentication_and_authorization_test
     steps:
       - checkout
       - run: echo "Pulling submodules"
@@ -50,6 +54,10 @@ jobs:
           PGHOST: localhost
           PGUSER: jetter
           RAILS_ENV: test
+      - image: circleci/postgres:12
+        environment:
+          POSTGRES_USER: jetter
+          POSTGRES_DB: user_authentication_and_authorization_test
     steps:
       - checkout
       - run: echo "Pulling submodules"
