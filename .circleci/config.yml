@@ -26,9 +26,10 @@ jobs:
             echo "Running bundle install"
             bundle install
             echo "Setting up database"
-            rake db:create
-            rake db:migrate
-            rake db:seed
+            sudo apt install -y postgresql-client || true
+            bundle exec rake db:create
+            bundle exec rake db:migrate
+            bundle exec rake db:seed
   build_jetter_client:
     docker:
       - image: circleci/node:8.16
@@ -72,9 +73,10 @@ jobs:
             echo "Running bundle install"
             bundle install
             echo "Setting up database"
-            rake db:create
-            rake db:migrate
-            rake db:seed
+            sudo apt install -y postgresql-client || true
+            bundle exec rake db:create
+            bundle exec rake db:migrate
+            bundle exec rake db:seed
             echo "Running RSpec tests."
             rspec spec
   test_jetter_client:
