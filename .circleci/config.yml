@@ -3,7 +3,7 @@ version: 2
 jobs:
   build_user_authentication_and_authorization:
     docker:
-      - image: cicrleci/ruby
+      - image: circleci/ruby:2.6.3
     steps:
       - checkout
       - run: echo "Pulling submodules"
@@ -16,7 +16,7 @@ jobs:
       - run: bundle install
   build_jetter_client:
     docker:
-      - image: cicrleci/node
+      - image: circleci/node:8.16
     steps:
       - checkout
       - run: echo "Pulling submodules"
@@ -31,7 +31,7 @@ jobs:
       - run: npm run build
   test_user_authentication_and_authorizationi:
     docker:
-      - image: cicrleci/ruby
+      - image: circleci/ruby:2.6.3
     steps:
       - checkout
       - run: echo "Pulling submodules"
@@ -46,7 +46,7 @@ jobs:
       - run: rspec spec
   test_jetter_client:
     docker:
-      - image: cicrleci/node
+      - image: circleci/node:8.16
     steps:
       - checkout
       - run: echo "Pulling submodules"
