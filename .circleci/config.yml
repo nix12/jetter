@@ -17,6 +17,10 @@ jobs:
             pwd
             echo "Running bundle install"
             bundle install
+            echo "Setting up database"
+            rails db:create
+            rails db:migrate
+            rails db:seed
   build_jetter_client:
     docker:
       - image: circleci/node:8.16
@@ -51,6 +55,10 @@ jobs:
             pwd
             echo "Running bundle install"
             bundle install
+            echo "Setting up database"
+            rails db:create
+            rails db:migrate
+            rails db:seed
             echo "Running RSpec tests."
             rspec spec
   test_jetter_client:
