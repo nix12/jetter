@@ -4,6 +4,8 @@ jobs:
   build_user_authentication_and_authorization:
     docker:
       - image: circleci/ruby:2.6.3
+        environment:
+          PGHOST: 127.0.0.1
     steps:
       - checkout
       - run: echo "Pulling submodules"
@@ -42,6 +44,8 @@ jobs:
   test_user_authentication_and_authorization:
     docker:
       - image: circleci/ruby:2.6.3
+        environment:
+          PGHOST: 127.0.0.1
     steps:
       - checkout
       - run: echo "Pulling submodules"
