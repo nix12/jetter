@@ -16,7 +16,7 @@ jobs:
       - run: bundle install
   build_jetter_client:
     docker:
-      - image: cicrleci/node:8.16
+      - image: cicrleci/node
     steps:
       - checkout
       - run: echo "Pulling submodules"
@@ -46,7 +46,7 @@ jobs:
       - run: rspec spec
   test_jetter_client:
     docker:
-      - image: cicrleci/node:8.16
+      - image: cicrleci/node
     steps:
       - checkout
       - run: echo "Pulling submodules"
