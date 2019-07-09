@@ -7,6 +7,8 @@ services:
     image: postgres:12
     ports:
       - "5433:5432"
+    volumes:
+      - ./postgres:/var/lib/postgresql/data 
     
   # Backend API's
   user_authentication_and_authorization:
@@ -23,3 +25,10 @@ services:
     volumes: 
       - ./user_authentication_and_authorization:/home/jetter
 
+  # Frontend
+  client:
+    build: ./jetter-client
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./jetter-client:/home/jetter
