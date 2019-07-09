@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.6.3
         environment:
-          PGHOST: localhost
+          PGHOST: db
           PGUSER: jetter
           RAILS_ENV: test
     steps:
@@ -22,9 +22,9 @@ jobs:
             echo "Running bundle install"
             bundle install
             echo "Setting up database"
-            bundle exec rake db:create
-            bundle exec rake db:migrate
-            bundle exec rake db:seed
+            rake db:create
+            rake db:migrate
+            rake db:seed
   build_jetter_client:
     docker:
       - image: circleci/node:8.16
@@ -64,9 +64,9 @@ jobs:
             echo "Running bundle install"
             bundle install
             echo "Setting up database"
-            bundle exec rake db:create
-            bundle exec rake db:migrate
-            bundle exec rake db:seed
+            rake db:create
+            rake db:migrate
+            rake db:seed
             echo "Running RSpec tests."
             rspec spec
   test_jetter_client:
