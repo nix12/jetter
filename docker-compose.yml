@@ -1,28 +1,27 @@
 version: "3.3"
 
 services:
-
   # Postgres database
   db:
     image: postgres:12
     ports:
       - "5433:5432"
     volumes:
-      - ./postgres:/var/lib/postgresql/data 
-    
+      - postgres_data:/var/lib/postgresql/data
+
   # Backend API's
   user_authentication_and_authorization:
     container_name: user_auth_api
     build: ./user_authentication_and_authorization
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    ports: 
+    ports:
       - "3001:3000"
     env_file: .env
     environment:
       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
     depends_on:
       - db
-    volumes: 
+    volumes:
       - ./user_authentication_and_authorization:/home/jetter
 
   # Frontend
@@ -32,3 +31,6 @@ services:
       - "3000:3000"
     volumes:
       - ./jetter-client:/home/jetter
+
+volumes:
+  postgres_data:

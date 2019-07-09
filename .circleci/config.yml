@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.6.3
         environment:
-          PGHOST: db
+          PGHOST: localhost
           PGUSER: jetter
           RAILS_ENV: test
     steps:
