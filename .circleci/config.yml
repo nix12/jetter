@@ -34,7 +34,7 @@ jobs:
             bundle exec rake db:migrate
             bundle exec rake db:seed
           environment:
-            DATABASE_URL: "postgres://@localhost:5432/user_authentication_and_authorization_test"
+            DATABASE_URL: "postgres://developer@localhost:5432/user_authentication_and_authorization_test"
   build_jetter_client:
     docker:
       - image: circleci/node:8.16
@@ -87,7 +87,7 @@ jobs:
             bundle exec rake db:seed
             bundle exec rspec spec
           environment:
-            DATABASE_URL: "postgres://@localhost:5432/user_authentication_and_authorization_test"
+            DATABASE_URL: "postgres://developer@localhost:5432/user_authentication_and_authorization_test"
   test_jetter_client:
     docker:
       - image: circleci/node:8.16
