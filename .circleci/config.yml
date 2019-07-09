@@ -3,7 +3,7 @@ version: 2
 jobs:
   build_user_authentication_and_authorization:
     docker:
-      - image: cicrleci/ruby:2.6.3
+      - image: cicrleci/ruby
     steps:
       - checkout
       - run: echo "Pulling submodules"
@@ -31,7 +31,7 @@ jobs:
       - run: npm run build
   test_user_authentication_and_authorizationi:
     docker:
-      - image: cicrleci/ruby:2.6.3
+      - image: cicrleci/ruby
     steps:
       - checkout
       - run: echo "Pulling submodules"
