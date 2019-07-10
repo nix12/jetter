@@ -4,3 +4,6 @@
 [submodule "user_authentication_and_authorization"]
 	path = user_authentication_and_authorization
 	url = https://github.com/nix12/user_authentication_and_authorization
+[submodule "forum_api"]
+	path = forum_api
+	url = https://github.com/nix12/forum_api
