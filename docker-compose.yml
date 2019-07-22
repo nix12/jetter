@@ -7,7 +7,7 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - /tmp/db:/var/lib/postgresql/data
 
   # Backend API's
   user_authentication_and_authorization:
@@ -24,6 +24,19 @@ services:
     volumes:
       - ./user_authentication_and_authorization:/home/jetter
 
+  forum_api:
+    build: ./forum_api
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    ports:
+      - "3002:3000"
+    env_file: .env
+    environment:
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY2}
+    depends_on:
+      - db
+    volumes:
+      - ./forum_api:/home/jetter
+
   # Frontend
   client:
     build: ./jetter-client
@@ -32,5 +45,3 @@ services:
     volumes:
       - ./jetter-client:/home/jetter
 
-volumes:
-  postgres_data:
