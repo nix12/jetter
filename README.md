@@ -1,11 +1,3 @@
-.env
-coverage
-node_modules
-.next
-/nbproject/private/
-
-1a8c8a3
-
 UNDER CONSTRUCTION
 
 Jetter is a reddit clone built for the purpose of learning in depth
@@ -21,7 +13,7 @@ Technologies used for this project:
 - [CircleCI](https://circleci.com/)
 - [PostgreSQL](https://www.postgresql.org/)
 
-Installation instructions for lo--recurse-submodulescal development:
+Installation instructions for local development:
 
 1. `git clone --recurse-submodules https://github.com/nix12/jetter.git`
    Clone the repository for local development.
@@ -72,7 +64,7 @@ This command will set the headers for the route headers.
     from the client to the backend APIs. Click the "SERVICES" link in the side panel, then click
     the service name. Under "Service Details" click plugins. In the window click "Security", then
     click "ADD PLUGIN" under CORS. Here under "origins", enter \* then press return. Next, under
-    "orgins," enter Authorization the press return, and then enter resouces(lowercase) and press
+    "orgins," enter Authorization the press return, and then enter resources(lowercase) and press
     return. Lastly, for methods, copy and paste the following list:
     GET, POST, PUT, PATCH, DELETE, OPTIONS. Then press enter. Click "ADD PLUGIN."
     CORS is now setup and ready to go.
@@ -167,23 +159,29 @@ Update the route header for correlating to the forum_api service in the terminal
 
 Phase 1:
 
+- Route guards
+- Permissions (frontend/backend)
+- All and Trending pages
 - Reddit style deletion
 - Links
-- All jet
 - Reddit style sorting
 - Trending jets
 - Moderator support
 - Lockdown
+- Error handling and error boundries
+- Validations
+- Testing
 
 Phase 2:
 
 - Saving posts
+- Post history
 - Tagging
+- Pin posts
 - Admin
 - Mobile
 - Search/Elasticsearch
 - API interactions for Photos and Videos
-- CDN
 
 Services to be added in the future:
 
@@ -193,4 +191,3 @@ Services to be added in the future:
 - Notifications
 - Chat
 - Donations
-- Alternate logins

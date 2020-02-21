@@ -7,3 +7,6 @@
 [submodule "forum_api"]
 	path = forum_api
 	url = https://github.com/nix12/forum_api
+[submodule "kong-gateway"]
+	path = kong
+	url = git@github.com:nix12/kong.git

@@ -3,7 +3,6 @@ version: "3.6"
 networks:
   jetter-net:
     driver: bridge
-    external: false
 
 volumes:
   pgdata:
@@ -76,7 +75,7 @@ services:
 
   # Kong API gateway
   kong:
-    build: ./docker-compose-wait
+    build: ./kong
     restart: always
     environment:
       KONG_ADMIN_ACCESS_LOG: /dev/stdout
@@ -110,7 +109,7 @@ services:
 
   # Kong database migration
   kong-migrations:
-    build: ./docker-compose-wait
+    build: ./kong
     command: sh -c "/wait && kong migrations bootstrap"
     restart: on-failure
     environment:
@@ -126,7 +125,7 @@ services:
 
   # Kong migrations up
   kong-migrations-up:
-    build: ./docker-compose-wait
+    build: ./kong
     command: sh -c "/wait && kong migrations up && kong migrations finish"
     depends_on:
       - kong_db
@@ -145,6 +144,7 @@ services:
 
   # Frontend
   jetter-client:
+    container_name: client
     build: ./jetter-client
     restart: always
     ports:
@@ -153,14 +153,17 @@ services:
       - ./jetter-client:/jetter-client
     networks:
       - jetter-net
+    depends_on:
+      - kong
+    links:
+      - kong
 
   #######################################
   # Konga database prepare
   #######################################
   konga-prepare:
     image: pantsel/konga:next
-    command: "-c prepare -a postgres -u postgresql://kong:kong@kong_db:5432
-    /konga_db"
+    command: "-c prepare -a postgres -u postgresql://kong:kong@kong_db:5432/konga_db"
     networks:
       - jetter-net
     environment:
