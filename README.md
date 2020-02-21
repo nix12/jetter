@@ -36,31 +36,20 @@ Installation instructions for local development:
    Enter the name you want to call the admin connection. For the kong admin url
    enter: http://<Enter Kong IP address from step 8>:8001, then click "create connection."
    Now the connection with the Kong API is complete, so head back to your terminal.
-10. `docker-compose exec jetter-client sh -c 'ping user_authentication_and_authorization'`
-    Grab the IP address the as you did in step 8. This address will be used to setup the kong
-    service for the user_auth API.
-    (Save the IP addresses because they will used in route headers later)
-11. In Konga, click services under the "API GATEWAY" heading in the side panel. Then click the
+10. In Konga, click services under the "API GATEWAY" heading in the side panel. Then click the
     "ADD NEW SERVICE" button. In the following window, enter the name (I named mine user-auth)
-    and description of the service. For the protocol, enter http, and for the port, enter 3000.
+    and description of the service. For the protocol enter: http, and for the port enter: 3000,
+    for host: user_authentication_and_authorization, and path: /.
     Click the "SUBMIT SERVICE" button. Now there is a new service.
-12. Next in Konga, we are going to setup the for the newly created service. Routes can only be
+11. Next in Konga, we are going to setup the for the newly created service. Routes can only be
     created from the service page. Click on the new service name, then under "service details"
     click routes. Next click the "ADD ROUTES" button. In the following window, enter a name for
     the route. Scroll down to the methods section and enter the following:
     (BE SURE TO HIT ENTER AFTER EACH AND CAPITALIZE) GET, POST, PUT, PATCH, DELETE, OPTIONS.
+    Lastly, in paths enter: /auth (and if entering for the forum_api route: /forum)
     Click "SUBMIT ROUTE." Now we have associated a route with a service in Kong.
-13.
-
-```shell
-  curl -i -X PATCH --url http://localhost:8001/routes/<name or ID of route> \
-  -d '{"headers": { "resources": ["<Enter user_authentication_and_authorization IP address>"] } }' \
-  -H "Content-Type: application/json"
-```
-
-This command will set the headers for the route headers.
-
-14. Now its time to activate the CORS plugin on the service. This will allow requests to be sent
+12. Repeat steps 9-11 form the forum_api.
+13. Now its time to activate the CORS plugin on the service. This will allow requests to be sent
     from the client to the backend APIs. Click the "SERVICES" link in the side panel, then click
     the service name. Under "Service Details" click plugins. In the window click "Security", then
     click "ADD PLUGIN" under CORS. Here under "origins", enter \* then press return. Next, under
@@ -68,11 +57,8 @@ This command will set the headers for the route headers.
     return. Lastly, for methods, copy and paste the following list:
     GET, POST, PUT, PATCH, DELETE, OPTIONS. Then press enter. Click "ADD PLUGIN."
     CORS is now setup and ready to go.
-15. `docker-compose exec jetter-client sh -c 'ping forum_api'`
-    Grab the IP address the as you did in step 8. This address will be used to setup the kong
-    service for the forum_api. (Be sure to save the IP address)
-16. Repeat steps 11-14 for them forum_api container.
-17. Now we will create a consumer for Kong API to consume the client. In Konga go to the consumers
+14. Repeat step 13 for forum_api
+15. Now we will create a consumer for Kong API to consume the client. In Konga go to the consumers
     link and click "CREATE CONSUMER." Enter a username and custom_id of your choosing (for this I
     chose jetter-client for both). Your consumer is now created. Click on your new consumer.
     Go to the "Credentials" tab. Click JWT and "CREATE JWT." Continuing, click "SUBMIT." JWT
@@ -86,7 +72,7 @@ This command will set the headers for the route headers.
     file called .env and in it create a variable called KONG_JWT and assign it the token. So, the
     .env file should have a variable that look like this:
     KONG_JWT=\<TOKEN HERE>
-18.
+16.
 
 ```shell
   docker-compose exec user_authentication_and_authorization rake \
@@ -101,61 +87,8 @@ KONG_JWT=\<TOKEN HERE>
 CLIENT_ID=\<application_id>
 CLIENT_SECRET=\<application_secret>
 
-19. `docker-compose exec jetter-client sh -c 'ping kong'`
-    Grab the Kong IP address and go to /jetter-client/services/axios/axios-user.js.
-    Replace the current IP address in baseURL with the new Kong IP address at port 8000.
-    Grab the Kong IP address and go to /jetter-client/services/axios/axios-forum.js.
-    Replace the current IP address in baseURL with the new Kong IP address at port 8000.
-20. `docker-compose exec jetter-client sh -c 'ping user_authentication_and_authorization'`
-    Grab the Kong IP address and go to /jetter-client/services/axios/axios-user.js.
-    Replace the current IP address in request.headers.resources with the new
-    user_authentication_and_authorization IP address.
-21. `docker-compose exec jetter-client sh -c 'ping forum_api'`
-    Grab the Kong IP address and go to /jetter-client/services/axios/axios-forum.js.
-    Replace the current IP address in request.headers.resources with the new
-    forum_api IP address.
-22. `docker restart jetter_jetter-client_1`
-23. Open (http://localhost:3000)[http://localhost:3000] to experiment with the application.
-
-Instructions for after completely restarting all containers.
-
-1. `docker-compose exec jetter-client sh -c 'ping kong'`
-   Grab the Kong IP address and go to /jetter-client/services/axios/axios-user.js.
-   Replace the current IP address in baseURL with the new Kong IP address at port 8000.
-   Grab the Kong IP address and go to /jetter-client/services/axios/axios-forum.js.
-   Replace the current IP address in baseURL with the new Kong IP address at port 8000.
-2. `docker-compose exec jetter-client sh -c 'ping user_authentication_and_authorization'`
-   Grab the Kong IP address and go to /jetter-client/services/axios/axios-user.js.
-   Replace the current IP address in request.headers.resources with the new
-   user_authentication_and_authorization IP address.
-   In Konga go to services and click on the container correlating to the
-   user_authentication_and_authorization container and replace the host IP address with
-   the new IP address.
-3.
-
-```shell
-  curl -i -X PATCH --url http://localhost:8001/routes/<name or ID of route> \
-  -d '{"headers": { "resources": ["<Enter user_authentication_and_authorization IP address>"] } }' \
-  -H "Content-Type: application/json"
-```
-
-Update the route header for correlating to the user_authentication_and_authorization service
-in the terminal
-
-4. `docker-compose exec jetter-client sh -c 'ping forum_api'`
-   Grab the Kong IP address and go to /jetter-client/services/axios/axios-forum.js.
-   Replace the current IP address in request.headers.resources with the new
-   forum_api IP address. In Konga go to services and click on the container correlating to the
-   forum_api container and replace the host IP address with the new IP address.
-5.
-
-```shell
-  curl -i -X PATCH --url http://localhost:8001/routes/<name or ID of route> \
-  -d '{"headers": { "resources": ["<Enter user_authentication_and_authorization IP address>"] } }' \
-  -H "Content-Type: application/json"
-```
-
-Update the route header for correlating to the forum_api service in the terminal.
+17. `docker restart jetter_jetter-client_1`
+18. Open (http://localhost:3000)[http://localhost:3000] to experiment with the application.
 
 Phase 1:
 
