@@ -92,32 +92,39 @@ CLIENT_SECRET=\<application_secret>
 
 Phase 1:
 
-- Route guards
-- Permissions (frontend/backend)
-- All and Trending pages
-- Reddit style deletion
-- Links
-- Reddit style sorting
+- Permissions (frontend/backend)(forum_api)
 - Trending jets
-- Moderator support
-- Lockdown
 - Error handling and error boundries
 - Validations
-- Testing
+- Logout failure
+- Build delete and remove methods
 
 Phase 2:
 
+- Convert voted items to tables
+- Build out user
 - Saving posts
 - Post history
 - Tagging
+- Pagination
 - Pin posts
 - Admin
-- Mobile
+- Moderator support
+- Lockdown
 - Search/Elasticsearch
 - API interactions for Photos and Videos
+- Reddit style sorting
+
+Phase 3:
+
+- Testing
+- Caching
+- Design
+- Optimize
 
 Services to be added in the future:
 
+- Mobile
 - Messaging
 - Analytics
 - Mailer
