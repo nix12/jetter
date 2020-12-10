@@ -92,16 +92,11 @@ CLIENT_SECRET=\<application_secret>
 
 Phase 1:
 
-- Permissions (frontend/backend)(forum_api)
-- Trending jets
 - Error handling and error boundries
-- Validations
 - Logout failure
-- Build delete and remove methods
 
 Phase 2:
 
-- Convert voted items to tables
 - Build out user
 - Saving posts
 - Post history
@@ -114,6 +109,8 @@ Phase 2:
 - Search/Elasticsearch
 - API interactions for Photos and Videos
 - Reddit style sorting
+- Trending jets(rank)
+- Build subscription
 
 Phase 3:
 
@@ -131,3 +128,7 @@ Services to be added in the future:
 - Notifications
 - Chat
 - Donations
+
+Current:
+
+- Save comments.
