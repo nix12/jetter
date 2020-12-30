@@ -98,8 +98,6 @@ Phase 1:
 Phase 2:
 
 - Build out user
-- Saving posts
-- Post history
 - Tagging
 - Pagination
 - Pin posts
@@ -131,4 +129,4 @@ Services to be added in the future:
 
 Current:
 
-- Save comments.
+- Subscriptions.
