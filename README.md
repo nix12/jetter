@@ -99,7 +99,6 @@ Phase 2:
 
 - Build out user
 - Tagging
-- Pagination
 - Pin posts
 - Admin
 - Moderator support
@@ -108,7 +107,7 @@ Phase 2:
 - API interactions for Photos and Videos
 - Reddit style sorting
 - Trending jets(rank)
-- Build subscription
+- Follow functionality
 
 Phase 3:
 
@@ -129,4 +128,4 @@ Services to be added in the future:
 
 Current:
 
-- Subscriptions.
+- Follow.
