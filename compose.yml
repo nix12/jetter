@@ -1,5 +1,3 @@
-version: "3.6"
-
 networks:
   jetter-net:
     driver: bridge
@@ -49,11 +47,11 @@ services:
       - "3001:3000"
     env_file: .env
     environment:
-      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+      - USER_AUTH_API_KEY=${RAILS_MASTER_KEY}
     depends_on:
       - db
     volumes:
-      - ./user_authentication_and_authorization:/user_authentication_and_authorization
+      - pgdata:/var/lib/postgresql/data
     networks:
       - jetter-net
 
@@ -65,11 +63,11 @@ services:
       - "3002:3000"
     env_file: .env
     environment:
-      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY2}
+      - FORUM_API_KEY=${RAILS_MASTER_KEY2}
     depends_on:
       - db
     volumes:
-      - ./forum_api:/forum_api
+      - pgdata:/var/lib/postgresql/data
     networks:
       - jetter-net
 
@@ -150,7 +148,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./jetter-client:/jetter-client
+      - pgdata:/var/lib/postgresql/data
     networks:
       - jetter-net
     depends_on:
