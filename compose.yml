@@ -40,14 +40,14 @@ services:
   # Backend API's
   user_authentication_and_authorization:
     container_name: user_auth_api
-    build: ./user_authentication_and_authorization
+    image: planetnix/jetter_user_auth:dev
     command: sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     restart: always
     ports:
       - "3001:3000"
     env_file: .env
     environment:
-      - USER_AUTH_API_KEY=${RAILS_MASTER_KEY}
+      - USER_AUTH_API_KEY=${USER_AUTH_MASTER_KEY}
     depends_on:
       - db
     volumes:
@@ -56,14 +56,14 @@ services:
       - jetter-net
 
   forum_api:
-    build: ./forum_api
+    image: planetnix/jetter_forum:dev
     command: sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     restart: always
     ports:
       - "3002:3000"
     env_file: .env
     environment:
-      - FORUM_API_KEY=${RAILS_MASTER_KEY2}
+      - FORUM_API_KEY=${FORUM_MASTER_KEY}
     depends_on:
       - db
     volumes:
@@ -73,7 +73,7 @@ services:
 
   # Kong API gateway
   kong:
-    build: ./kong
+    image: kong:1.4
     restart: always
     environment:
       KONG_ADMIN_ACCESS_LOG: /dev/stdout
@@ -86,9 +86,6 @@ services:
       KONG_PROXY_LISTEN: 0.0.0.0:8000
       KONG_PROXY_LISTEN_SSL: 0.0.0.0:8443
       KONG_ADMIN_LISTEN: 0.0.0.0:8001
-      WAIT_HOSTS: db:5432, kong_db:5432
-      WAIT_HOSTS_TIMEOUT: 120
-      WAIT_SLEEP_INTERVAL: 15
     healthcheck:
       test: ["CMD", "kong", "health"]
       interval: 5s
@@ -107,15 +104,12 @@ services:
 
   # Kong database migration
   kong-migrations:
-    build: ./kong
-    command: sh -c "/wait && kong migrations bootstrap"
+    image: kong:1.4
+    command: sh -c "kong migrations bootstrap"
     restart: on-failure
     environment:
       KONG_PG_HOST: kong_db
       KONG_PG_PASSWORD: kong
-      WAIT_HOSTS: db:5432, kong_db:5432
-      WAIT_HOSTS_TIMEOUT: 120
-      WAIT_SLEEP_INTERVAL: 15
     depends_on:
       - kong_db
     networks:
@@ -123,8 +117,8 @@ services:
 
   # Kong migrations up
   kong-migrations-up:
-    build: ./kong
-    command: sh -c "/wait && kong migrations up && kong migrations finish"
+    image: kong:1.4
+    command: sh -c "kong migrations up && kong migrations finish"
     depends_on:
       - kong_db
     environment:
@@ -133,9 +127,6 @@ services:
       KONG_PG_HOST: kong_db
       KONG_PG_PASSWORD: kong
       KONG_PG_USER: kong
-      WAIT_HOSTS: db:5432, kong_db:5432
-      WAIT_HOSTS_TIMEOUT: 120
-      WAIT_SLEEP_INTERVAL: 15
     networks:
       - jetter-net
     restart: on-failure
@@ -143,7 +134,7 @@ services:
   # Frontend
   jetter-client:
     container_name: client
-    build: ./jetter-client
+    image: planetnix/jetter_client:dev
     restart: always
     ports:
       - "3000:3000"
@@ -155,39 +146,3 @@ services:
       - kong
     links:
       - kong
-
-  #######################################
-  # Konga database prepare
-  #######################################
-  konga-prepare:
-    image: pantsel/konga:next
-    command: "-c prepare -a postgres -u postgresql://kong:kong@kong_db:5432/konga_db"
-    networks:
-      - jetter-net
-    environment:
-      KONGA_HOOK_TIMEOUT: 120000
-    restart: on-failure
-    depends_on:
-      - kong_db
-
-  #######################################
-  # Konga: Kong GUI
-  #######################################
-  konga:
-    image: pantsel/konga:next
-    restart: always
-    networks:
-      - jetter-net
-    environment:
-      DB_ADAPTER: postgres
-      DB_HOST: kong_db
-      DB_USER: kong
-      DB_PASSWORD: kong
-      TOKEN_SECRET: km1GUr4RkcQD7DewhJPNXrCuZwcKmqjb
-      DB_DATABASE: konga_db
-      NODE_ENV: production
-      KONGA_HOOK_TIMEOUT: 120000
-    depends_on:
-      - kong_db
-    ports:
-      - "1337:1337"
