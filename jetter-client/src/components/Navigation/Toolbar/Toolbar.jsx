@@ -2,11 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 
 import { makeStyles } from '@mui/material/styles';
-import AppBar from '@mui/icons-material/AppBar';
-import Toolbar from '@mui/icons-material/Toolbar';
-import IconButton from '@mui/icons-material/IconButton';
-import Typography from '@mui/icons-material/Typography';
-import InputBase from '@mui/icons-material/InputBase';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/icons-material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/MenuList';

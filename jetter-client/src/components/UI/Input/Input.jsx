@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Input from '@material-ui/core/Input/Input';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import Input from '@mui/material/Input/Input';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 const input = props => {
   const { elementConfig, elementType, value, name, changed } = props;

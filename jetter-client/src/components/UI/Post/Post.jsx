@@ -5,16 +5,17 @@ import { useRouter } from 'next/router';
 import Moment from 'moment';
 import _ from 'lodash';
 
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@mui/material/Button';import Typography from '@material-ui/core/Typography';
-import ArrowUp from '@material-ui/icons/ArrowUpward';
-import ArrowDown from '@material-ui/icons/ArrowDownward';
-import Star from '@material-ui/icons/Star';
-import StarBorder from '@material-ui/icons/StarBorder';
-import Divider from '@material-ui/core/Divider';
+import { makeStyles } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import ArrowUp from '@mui/material/style/ArrowUpward';
+import ArrowDown from '@mui/material/style/ArrowDownward';
+import Star from '@mui/material/style/Star';
+import StarBorder from '@mui/material/style/StarBorder';
+import Divider from '@mui/material/Divider';
 
 import axios from '../../../services/axios/axios-forum';
 import Can from '../../Permissions/Can';

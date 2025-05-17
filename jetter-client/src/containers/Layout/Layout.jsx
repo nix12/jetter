@@ -4,12 +4,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import _ from 'lodash';
 
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@mui/material/styles';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 import { Alert } from '@material-ui/lab';
-import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
+``
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import DefaultJets from '../../components/Navigation/DefaultJets/DefaultJets';
 import Trending from '../../components/Navigation/Trending/Trending';

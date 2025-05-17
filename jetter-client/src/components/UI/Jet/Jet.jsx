@@ -4,11 +4,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Moment from 'moment';
 
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@mui/material/Button';import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 import Can from '../../Permissions/Can';
 import IsLoggedIn from '../../Permissions/LoggedIn';

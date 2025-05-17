@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import Button from '@mui/material/Button';import Divider from '@material-ui/core/Divider';
+import { makeStyles } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import axios from '../../../services/axios/axios-forum';
 
 const useStyles = makeStyles({
