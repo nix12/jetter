@@ -1,0 +1,8 @@
+{
+  "build": {
+    "env": {
+      "PRODUCTION_CLIENT_ID": "@production_client_id",
+      "PRODUCTION_CLIENT_SECRET": "@production_client_secret"
+    }
+  }
+}
