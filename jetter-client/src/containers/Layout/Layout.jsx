@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import _ from 'lodash';
 
-import { makeStyles } from '@mui/material/styles';
+import { css } from '@emotion/react'
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import { Alert } from '@material-ui/lab';
+import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 ``
@@ -24,39 +24,38 @@ import {
   getSavedItems
 } from '../../store/actions/index';
 
-const useStyles = makeStyles({
-  buttons: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    width: '20em'
-    // backgroundColor: 'black'
-  },
-  layout: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    // backgroundColor: 'salmon',
-    marginTop: '2em',
-    width: '100%'
-  },
-  jets: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center'
-  },
-  trending: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
-
 const Layout = props => {
   const { children } = props;
 
-  const classes = useStyles();
+  const classes = {
+    buttons: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      width: '20em'
+      // backgroundColor: 'black'
+    },
+    layout: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      // backgroundColor: 'salmon',
+      marginTop: '2em',
+      width: '100%'
+    },
+    jets: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center'
+    },
+    trending: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  };
+  
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -111,15 +110,15 @@ const Layout = props => {
     <div>
       <Toolbar user={username} loggedIn={loggedIn} />
       <h3 style={{ textAlign: 'center' }}>UNDER CONSTRUCTION</h3>
-      <div className={classes.jets}>
+      <div className={css`classes.jets`}>
         <DefaultJets />
       </div>
       {errorMessage}
-      <Container className={classes.layout}>
+      <Container className={css`classes.layout`}>
         <Grid lg={8} item>
           {children}
         </Grid>
-        <Grid lg={2} item className={classes.buttons}>
+        <Grid lg={2} item className={css`classes.buttons`}>
           <IsLoggedIn>
             <Link href="/j/new">
               <Button color="primary" variant="contained">

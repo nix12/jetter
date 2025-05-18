@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Cookies from 'universal-cookie';
 
-import Select from '@material-ui/core/Select/Select';
-import MenuItem from '@material-ui/core/MenuItem/MenuItem';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import Subscriptions from '../../../containers/User/Subscriptions';
 import Profile from '../../../containers/User/Profile';
 import PostHistory from '../../../containers/User/PostHistory';

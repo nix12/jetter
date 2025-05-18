@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'universal-cookie';
 import jwtDecode from 'jwt-decode';
 
-import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
-import { Alert } from '@material-ui/lab';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import Can from '../../../components/Permissions/Can';

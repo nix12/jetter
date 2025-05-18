@@ -7,8 +7,8 @@ import App from 'next/app';
 import Head from 'next/head';
 import withRedux from 'next-redux-wrapper';
 
-import { ThemeProvider } from '@material-ui/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import DefaultTheme from '../themes/theme';
 
 import authReducer from '../store/reducers/auth';

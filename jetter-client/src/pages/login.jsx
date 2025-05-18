@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
-import { Alert } from '@material-ui/lab';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
 import Input from '../components/UI/Input/Input';
 import Button from '../components/UI/Button/Button';
 

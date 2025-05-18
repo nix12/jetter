@@ -1,4 +1,4 @@
-importimport React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -7,13 +7,13 @@ import Cookies from 'universal-cookie';
 import jwtDecode from 'jwt-decode';
 import _ from 'lodash';
 
-import { makeStyles } from '@mui/material/styles';
+import { css } from '@emotion/react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import ArrowUp from '@mui/icons-material/ExpandLess';
-import ArrowDown from '@mui/icons-material/ExpandMore';
+import ArrowUp from '@mui/icons-material/ArrowUpward';
+import ArrowDown from '@mui/icons-material/ArrowDownward';
 import Divider from '@mui/material/Divider';
 import Star from '@mui/icons-material/Star';
 import StarBorder from '@mui/icons-material/StarBorder';
@@ -31,42 +31,6 @@ import {
   unsaveComment,
   getSavedItems
 } from '../../../store/actions/index';
-
-const useStyles = makeStyles({
-  card: {
-    width: '50em',
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  info: {
-    fontSize: 14
-  },
-  votes: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center'
-  },
-  voted: {
-    color: 'orange'
-  },
-  user: {
-    '&:hover': {
-      cursor: 'pointer',
-      textDecoration: 'underline'
-    }
-  },
-  jet: {
-    fontWeight: 'bold',
-    '&:hover': {
-      cursor: 'pointer',
-      textDecoration: 'underline'
-    }
-  },
-  indentComments: {
-    marginLeft: props => `${props.depth * 25}px`,
-    marginTop: '10px'
-  }
-});
 
 const Comment = props => {
   const {
@@ -97,7 +61,41 @@ const Comment = props => {
   const [toggleEdit, setToggleEdit] = useState(false);
   const [savedId, setSavedId] = useState(null);
 
-  const classes = useStyles({ depth });
+  const classes = {
+    card: {
+      width: '50em',
+      display: 'flex',
+      flexDirection: 'row'
+    },
+    info: {
+      fontSize: 14
+    },
+    votes: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center'
+    },
+    voted: {
+      color: 'orange'
+    },
+    user: {
+      '&:hover': {
+        cursor: 'pointer',
+        textDecoration: 'underline'
+      }
+    },
+    jet: {
+      fontWeight: 'bold',
+      '&:hover': {
+        cursor: 'pointer',
+        textDecoration: 'underline'
+      }
+    },
+    indentComments: {
+      marginLeft: props => `${props.depth * 25}px`,
+      marginTop: '10px'
+    }
+  };
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -201,10 +199,10 @@ const Comment = props => {
   }, [savedId, savedList]);
 
   return (
-    <div className={classes.indentComments}>
+    <div className={css`classes.indentComments`}>
       <div>
-        <Card className={classes.card} style={style}>
-          <div className={classes.votes}>
+        <Card className={css`classes.card`} style={style}>
+          <div className={css`classes.votes`}>
             <RedirectToLogin>
               <ArrowUp
                 onClick={
@@ -212,7 +210,7 @@ const Comment = props => {
                     ? () => upvoted(jetId, postId, commentId)
                     : () => switchVote(jetId, postId, commentId)
                 }
-                className={up ? classes.voted : ''}
+                className={up ? css`classes.voted` : ''}
               />
             </RedirectToLogin>
             <RedirectToLogin>
@@ -222,7 +220,7 @@ const Comment = props => {
                     ? () => downvoted(jetId, postId, commentId)
                     : () => switchVote(jetId, postId, commentId)
                 }
-                className={down ? classes.voted : ''}
+                className={down ? css`classes.voted` : ''}
               />
             </RedirectToLogin>
           </div>
@@ -240,12 +238,12 @@ const Comment = props => {
             <div>
               <CardContent>
                 <Typography
-                  className={classes.info}
+                  className={css`classes.info`}
                   color="textSecondary"
                   gutterBottom
                 >
                   <Link href="/user/[username]" as={`/user/${username}`}>
-                    <span className={classes.user}>{username}</span>
+                    <span className={css`classes.user`}>{username}</span>
                   </Link>
                   &nbsp;
                   {score}

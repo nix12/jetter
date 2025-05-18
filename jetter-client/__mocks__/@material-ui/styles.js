@@ -1,5 +1,5 @@
 // Grab the original exports
-import * as Styles from "@material-ui/styles";
+import * as Styles from "@mui/styles";
 
 const makeStyles = () => {
     return () => {

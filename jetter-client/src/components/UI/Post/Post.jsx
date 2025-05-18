@@ -5,16 +5,16 @@ import { useRouter } from 'next/router';
 import Moment from 'moment';
 import _ from 'lodash';
 
-import { makeStyles } from '@mui/material/styles';
+import { css } from '@emotion/react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import ArrowUp from '@mui/material/style/ArrowUpward';
-import ArrowDown from '@mui/material/style/ArrowDownward';
-import Star from '@mui/material/style/Star';
-import StarBorder from '@mui/material/style/StarBorder';
+import ArrowUp from '@mui/icons-material/ArrowUpward';
+import ArrowDown from '@mui/icons-material/ArrowDownward';
+import Star from '@mui/icons-material/Star';
+import StarBorder from '@mui/icons-material/StarBorder';
 import Divider from '@mui/material/Divider';
 
 import axios from '../../../services/axios/axios-forum';
@@ -22,41 +22,6 @@ import Can from '../../Permissions/Can';
 import IsLoggedIn from '../../Permissions/LoggedIn';
 import RedirectToLogin from '../../Permissions/RedirectToLogin';
 import { deletePost, savePost, unsavePost } from '../../../store/actions/index';
-
-const useStyles = makeStyles({
-  card: {
-    width: '50em',
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  info: {
-    fontSize: 14
-  },
-  votes: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center'
-  },
-  voted: {
-    color: 'orange'
-  },
-  score: {
-    typeAlign: 'center'
-  },
-  user: {
-    '&:hover': {
-      cursor: 'pointer',
-      typeDecoration: 'underline'
-    }
-  },
-  jet: {
-    fontWeight: 'bold',
-    '&:hover': {
-      cursor: 'pointer',
-      typeDecoration: 'underline'
-    }
-  }
-});
 
 const Post = props => {
   const {
@@ -81,7 +46,40 @@ const Post = props => {
   const unvote = (jet, type, postId) =>
     axios.put(`/api/jets/${jet}/${type}s/${postId}/unvote`);
 
-  const classes = useStyles();
+  const classes = {
+    card: {
+      width: '50em',
+      display: 'flex',
+      flexDirection: 'row'
+    },
+    info: {
+      fontSize: 14
+    },
+    votes: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center'
+    },
+    voted: {
+      color: 'orange'
+    },
+    score: {
+      typeAlign: 'center'
+    },
+    user: {
+      '&:hover': {
+        cursor: 'pointer',
+        typeDecoration: 'underline'
+      }
+    },
+    jet: {
+      fontWeight: 'bold',
+      '&:hover': {
+        cursor: 'pointer',
+        typeDecoration: 'underline'
+      }
+    }
+  };
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -178,8 +176,8 @@ const Post = props => {
   }, [savedId, savedList]);
 
   return (
-    <Card className={classes.card} style={style}>
-      <div className={classes.votes}>
+    <Card className={css`classes.card`} style={style}>
+      <div className={css`classes.votes`}>
         <RedirectToLogin>
           <ArrowUp
             onClick={
@@ -187,10 +185,10 @@ const Post = props => {
                 ? () => upvoted(jetId, type, postId)
                 : () => switchVote(jetId, type, postId)
             }
-            className={up ? classes.voted : ''}
+            className={up ? css`classes.voted` : ''}
           />
         </RedirectToLogin>
-        <div className={classes.score}>{score}</div>
+        <div className={css`classes.score`}>{score}</div>
         <RedirectToLogin>
           <ArrowDown
             onClick={
@@ -198,26 +196,26 @@ const Post = props => {
                 ? () => downvoted(jetId, type, postId)
                 : () => switchVote(jetId, type, postId)
             }
-            className={down ? classes.voted : ''}
+            className={down ? css`classes.voted` : ''}
           />
         </RedirectToLogin>
       </div>
       <div>
         <CardContent>
           <Typography
-            className={classes.info}
+            className={css`classes.info`}
             color="textSecondary"
             gutterBottom
           >
             <Link href="/j/[jetId]" as={`/j/${jetId}`}>
-              <span className={classes.jet}>
+              <span className={css`classes.jet`}>
                 j/
                 {jetId}
               </span>
             </Link>
             &nbsp;&bull; Posted by&nbsp;
             <Link href="/user/[username]" as={`/user/${username}`}>
-              <span className={classes.user}>
+              <span className={css`classes.user`}>
                 {username === '[deleted]' ? username : `u/${username}`}
               </span>
             </Link>

@@ -1,17 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { makeStyles } from '@mui/material/styles';
+import { css } from '@emotion/react'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/icons-material/Badge';
+import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/MenuList';
-import { fade } from '@mui/material/colorManipulator';
-import MenuIcon from '@mui/icons-material/MenuList';
+import { alpha } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
@@ -21,71 +21,69 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 
 import IsLoggedIn from '../../Permissions/LoggedIn';
 
-const useStyles = makeStyles(theme => ({
-  grow: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
-  title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block'
-    }
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25)
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto'
-    }
-  },
-  searchIcon: {
-    width: theme.spacing(7),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  inputRoot: {
-    color: 'inherit'
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 7),
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: 200
-    }
-  },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex'
-    }
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none'
-    }
-  }
-}));
-
 const toolbar = props => {
   const { loggedIn, user } = props;
-  const classes = useStyles();
+  const classes = {
+    grow: {
+      flexGrow: 1
+    },
+    menuButton: {
+      marginRight: theme.spacing(2)
+    },
+    title: {
+      display: 'none',
+      [theme.breakpoints.up('sm')]: {
+        display: 'block'
+      }
+    },
+    search: {
+      position: 'relative',
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: alpha(theme.palette.common.white, 0.15),
+      '&:hover': {
+        backgroundColor: alpha(theme.palette.common.white, 0.25)
+      },
+      marginRight: theme.spacing(2),
+      marginLeft: 0,
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(3),
+        width: 'auto'
+      }
+    },
+    searchIcon: {
+      width: theme.spacing(7),
+      height: '100%',
+      position: 'absolute',
+      pointerEvents: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    inputRoot: {
+      color: 'inherit'
+    },
+    inputInput: {
+      padding: theme.spacing(1, 1, 1, 7),
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('md')]: {
+        width: 200
+      }
+    },
+    sectionDesktop: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'flex'
+      }
+    },
+    sectionMobile: {
+      display: 'flex',
+      [theme.breakpoints.up('md')]: {
+        display: 'none'
+      }
+    }
+  };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -193,29 +191,29 @@ const toolbar = props => {
 
   return (
     <header>
-      <nav className={classes.grow}>
+      <nav className={css`classes.grow`}>
         <AppBar position="static">
           <Toolbar>
             <Link href="/index" as="/">
               <Button color="inherit">
-                <Typography className={classes.title} variant="h6" noWrap>
+                <Typography className={css`classes.title`} variant="h6" noWrap>
                   Jetter
                 </Typography>
               </Button>
             </Link>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
+            <div className={css`classes.search`}>
+              <div className={css`classes.searchIcon`}>
                 <SearchIcon />
               </div>
               <InputBase
                 placeholder="Search…"
                 classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput
+                  root: css`classes.inputRoot`,
+                  input: css`classes.inputInput`
                 }}
               />
             </div>
-            <div className={classes.grow} />
+            <div className={css`classes.grow`} />
             <Link href="/jets">
               <Button>Jets</Button>
             </Link>
@@ -226,11 +224,11 @@ const toolbar = props => {
                 </Badge>
               </IconButton>
             </IsLoggedIn>
-            <div className={classes.sectionDesktop}>
+            <div className={css`classes.sectionDesktop`}>
               {/* {loggedIn ? loggedInNav : loggedOutNav} */}
               {loggedIn ? loggedInMobileNav : loggedOutNav}
             </div>
-            <div className={classes.sectionMobile}>
+            <div className={css`classes.sectionMobile`}>
               {loggedIn ? loggedInMobileNav : loggedOutNav}
             </div>
           </Toolbar>

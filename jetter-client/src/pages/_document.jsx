@@ -1,8 +1,14 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheets } from '@material-ui/styles';
-import flush from 'styled-jsx/server';
+import { ServerStyleSheets } from '@mui/material/styles';
+import { StyleRegistry, useStyleRegistry } from 'styled-jsx'
 import DefaultTheme from '../themes/theme';
+
+function Styles() {
+  const registry = useStyleRegistry()
+  const styles = registry.styles()
+  return <>{styles}</>
+}
 
 class MyDocument extends Document {
   render() {
@@ -70,8 +76,16 @@ MyDocument.getInitialProps = async ctx => {
     // Styles fragment is rendered after the app and page rendering finish.
     styles: (
       <React.Fragment>
-        {sheets.getStyleElement()}
-        {flush() || null}
+        <StyleRegistry>
+          <html>
+            <head>
+              <Styles />
+            </head>
+            <body>
+              <div id="root" dangerouslySetInnerHTML={{ __html: app }} />
+            </body>
+          </html>
+        </StyleRegistry>
       </React.Fragment>
     )
   };

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import { Alert } from '@material-ui/lab';
+import Alert from '@mui/material/Alert';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 

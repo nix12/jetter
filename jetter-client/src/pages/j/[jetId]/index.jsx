@@ -3,8 +3,8 @@ import { useDispatch, useSelector, useStore } from 'react-redux';
 import { useRouter } from 'next/router';
 import _ from 'lodash';
 
-import Pagination from '@material-ui/lab/Pagination/Pagination';
-import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
+import Pagination from '@mui/material/Pagination';
+import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button/Button';
 
 import Post from '../../../components/UI/Post/Post';

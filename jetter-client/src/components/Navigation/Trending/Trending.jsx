@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-import { makeStyles } from '@mui/material/styles';
+import { css } from '@emotion/react';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import axios from '../../../services/axios/axios-forum';
 
-const useStyles = makeStyles({
-  center: {
-    textAlign: 'center'
-  }
-});
-
 const Trending = props => {
   const { setLoading } = props;
-  const classes = useStyles();
+  const classes = {
+    center: {
+      textAlign: 'center'
+    }
+  };
   const [list, setList] = useState([]);
 
   useEffect(() => {
@@ -32,7 +30,7 @@ const Trending = props => {
   const jets = list.map((text, index) => {
     while (index <= 5) {
       return (
-        <div key={text.id} className={classes.center}>
+        <div key={text.id} className={css`classes.center`}>
           <Link href="/j/[jetId]" as={`/j/${text.name}`}>
             <Button>{text.name}</Button>
           </Link>

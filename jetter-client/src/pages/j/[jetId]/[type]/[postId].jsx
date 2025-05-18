@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import _ from 'lodash';
 
-import Alert from '@material-ui/lab/Alert';
-import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
+import Alert from '@mui/material/Alert';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import Post from '../../../../components/UI/Post/Post';
 import Comment from '../../../../components/UI/Comment/Comment';

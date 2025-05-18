@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Moment from 'moment';
 
-import { makeStyles } from '@mui/material/styles';
+import { css } from '@emotion/react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -15,45 +15,43 @@ import Can from '../../Permissions/Can';
 import IsLoggedIn from '../../Permissions/LoggedIn';
 import RedirectToLogin from '../../Permissions/RedirectToLogin';
 
-const useStyles = makeStyles({
-  card: {
-    width: '50em',
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  info: {
-    fontSize: 14
-  },
-  votes: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center'
-  },
-  voted: {
-    color: 'orange'
-  },
-  score: {
-    typeAlign: 'center'
-  },
-  user: {
-    '&:hover': {
-      cursor: 'pointer',
-      typeDecoration: 'underline'
-    }
-  },
-  jet: {
-    fontWeight: 'bold',
-    '&:hover': {
-      cursor: 'pointer',
-      typeDecoration: 'underline'
-    }
-  }
-});
-
 const Jet = props => {
   const { jet, jetId, createdAt } = props;
 
-  const classes = useStyles();
+  const classes = {
+    card: {
+      width: '50em',
+      display: 'flex',
+      flexDirection: 'row'
+    },
+    info: {
+      fontSize: 14
+    },
+    votes: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center'
+    },
+    voted: {
+      color: 'orange'
+    },
+    score: {
+      typeAlign: 'center'
+    },
+    user: {
+      '&:hover': {
+        cursor: 'pointer',
+        typeDecoration: 'underline'
+      }
+    },
+    jet: {
+      fontWeight: 'bold',
+      '&:hover': {
+        cursor: 'pointer',
+        typeDecoration: 'underline'
+      }
+    }
+  };
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -65,11 +63,11 @@ const Jet = props => {
   const currentUser = useSelector(state => state.auth.currentUser.username);
 
   return (
-    <Card className={classes.card}>
+    <Card className={css`classes.card`}>
       <div>
         <CardContent>
           <Typography
-            className={classes.info}
+            className={css`classes.info`}
             color="textSecondary"
             gutterBottom
           >
