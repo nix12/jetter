@@ -5,8 +5,8 @@ class Voter < ApplicationRecord
 
   self.primary_key = 'username'
 
-  has_many :texts, inverse_of: 'author'
-  has_many :links, inverse_of: 'author'
+  # has_many :texts, inverse_of: 'author'
+  # has_many :links, inverse_of: 'author'
   has_many :comments, inverse_of: 'author'
   has_many :jets, inverse_of: 'owner'
   has_many :saved_posts

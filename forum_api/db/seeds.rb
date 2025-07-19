@@ -53,7 +53,7 @@ post = Post.create(
 comment = Comment.create(
   body: 'This is a comment of the first text',
   author: voter,
-  text_id: post.id,
+  post_id: post.id,
   commentable_type: Post,
   commentable_id: post.id,
   parent_id: nil
@@ -61,7 +61,7 @@ comment = Comment.create(
 comment2 = Comment.create(
   body: 'This is a comment of the first comment',
   author: voter,
-  text_id: post.id,
+  post_id: post.id,
   commentable_type: Comment,
   commentable_id: comment.id,
   parent_id: comment.id
@@ -69,7 +69,7 @@ comment2 = Comment.create(
 Comment.create(
   body: 'A glorius comment',
   author: voter,
-  text_id: post.id,
+  post_id: post.id,
   commentable_type: Comment,
   commentable_id: comment2.id,
   parent_id: comment2.id
@@ -77,7 +77,7 @@ Comment.create(
 Comment.create(
   body: 'This is a second comment of the first text',
   author: voter,
-  text_id: post.id,
+  post_id: post.id,
   commentable_type: Post,
   commentable_id: post.id,
   parent_id: nil

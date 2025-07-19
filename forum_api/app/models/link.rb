@@ -14,7 +14,7 @@ class Link < Post
   belongs_to :author, class_name: 'Voter', foreign_key: 'voter_id'
   has_many :comments, -> { order(cached_votes_score: :desc) }, as: :commentable
 
-  serialize :rules, Hash
+  serialize :rules, type: Hash, coder: JSON
 
   validates :title, presence: true, length: { minimum: 1, maximum: 100 }
   validates :uri, presence: true, length: { minimum: 1, maximum: 300 }

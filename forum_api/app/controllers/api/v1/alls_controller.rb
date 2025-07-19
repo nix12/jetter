@@ -6,6 +6,6 @@ class Api::V1::AllsController < ApplicationController
       [text.cached_votes_score, text.created_at]
     end.reverse!
 
-    render 'all/all.json.jbuilder', status: :ok
+    render 'all/all', status: :ok
   end
 end

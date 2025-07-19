@@ -6,6 +6,8 @@ class Post < ApplicationRecord
 
   self.primary_key = 'hash_id'
 
+  belongs_to :postable, polymorphic: true
+
   has_many :saved_posts
   has_many :voters, through: :saved_posts, source: :voters
 
